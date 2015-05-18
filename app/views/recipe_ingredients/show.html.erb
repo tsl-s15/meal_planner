@@ -1,0 +1,41 @@
+<!-- Responsive panel example-->
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Recipe Ingredient #<%= @recipe_ingredient.id %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-12">
+            <dl class="dl-horizontal">
+              <dt>Recipe</dt>
+              <dd><%= @recipe_ingredient.recipe_id %></dd>
+
+              <dt>Ingredient</dt>
+              <dd><%= @recipe_ingredient.ingredient_id %></dd>
+
+              <dt>Amount</dt>
+              <dd><%= @recipe_ingredient.amount %></dd>
+
+            </dl>
+            <div class="btn-group btn-group-justified">
+              <%= link_to recipe_ingredients_url, :class => "btn btn-primary" do %>
+                <i class="fa fa-chevron-left"></i>
+              <% end %>
+              <%= link_to edit_recipe_ingredient_url(@recipe_ingredient.id), :class => "btn btn-warning" do %>
+                <i class="fa fa-edit"></i>
+              <% end %>
+              <%= link_to recipe_ingredient_url(@recipe_ingredient.id), :method => "delete", :data => { :confirm => "Do you really want to delete this recipe_ingredient?" }, :class => "btn btn-danger" do %>
+                <i class="fa fa-trash-o"></i>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End responsive panel example -->
