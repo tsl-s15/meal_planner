@@ -1,6 +1,6 @@
-class CreateMeals < ActiveRecord::Migration
+class CreateSelectedRecipes < ActiveRecord::Migration
   def change
-    create_table :meals do |t|
+    create_table :selected_recipes do |t|
       t.integer :user_id
       t.integer :recipe_id
 

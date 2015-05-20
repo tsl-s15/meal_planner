@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the Selected_recipe resource:
+  # CREATE
+  get '/selected_recipes/new',      :controller => 'selected_recipes', :action => 'new',    :as => 'new_selected_recipe'
+  post '/selected_recipes',         :controller => 'selected_recipes', :action => 'create', :as => 'selected_recipes'
+
+  # READ
+  get '/selected_recipes',          :controller => 'selected_recipes', :action => 'index'
+  get '/selected_recipes/:id',      :controller => 'selected_recipes', :action => 'show',   :as => 'selected_recipe'
+
+  # UPDATE
+  get '/selected_recipes/:id/edit', :controller => 'selected_recipes', :action => 'edit',   :as => 'edit_selected_recipe'
+  patch '/selected_recipes/:id',    :controller => 'selected_recipes', :action => 'update'
+
+  # DELETE
+  delete '/selected_recipes/:id',   :controller => 'selected_recipes', :action => 'destroy'
+  #------------------------------
+
   devise_for :users
   # Routes for the Recipe resource:
   # CREATE
@@ -18,23 +35,6 @@ Rails.application.routes.draw do
   #------------------------------
 
   root to: "recipes#index"
-  # Routes for the Meal resource:
-  # CREATE
-  get '/meals/new',      :controller => 'meals', :action => 'new',    :as => 'new_meal'
-  post '/meals',         :controller => 'meals', :action => 'create', :as => 'meals'
-
-  # READ
-  get '/meals',          :controller => 'meals', :action => 'index'
-  get '/meals/:id',      :controller => 'meals', :action => 'show',   :as => 'meal'
-
-  # UPDATE
-  get '/meals/:id/edit', :controller => 'meals', :action => 'edit',   :as => 'edit_meal'
-  patch '/meals/:id',    :controller => 'meals', :action => 'update'
-
-  # DELETE
-  delete '/meals/:id',   :controller => 'meals', :action => 'destroy'
-  #------------------------------
-
   # Routes for the User resource:
   # CREATE
   get '/users/new',      :controller => 'users', :action => 'new',    :as => 'new_user'

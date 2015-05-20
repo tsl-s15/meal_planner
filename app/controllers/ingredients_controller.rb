@@ -12,12 +12,7 @@ class IngredientsController < ApplicationController
   end
 
   def create
-    @ingredient = Ingredient.new
-    @ingredient.name = params[:name]
-    @ingredient.category = params[:category]
-    @ingredient.price_per_unit = params[:price_per_unit]
-    @ingredient.unit = params[:unit]
-
+    @ingredient = Ingredient.new(ingredient_params)
     if @ingredient.save
       redirect_to ingredients_url, :notice => "Ingredient created successfully."
     else
@@ -31,12 +26,7 @@ class IngredientsController < ApplicationController
 
   def update
     @ingredient = Ingredient.find(params[:id])
-
-    @ingredient.name = params[:name]
-    @ingredient.category = params[:category]
-    @ingredient.price_per_unit = params[:price_per_unit]
-    @ingredient.unit = params[:unit]
-
+    @ingredient.update_attributes(ingredient_params)
     if @ingredient.save
       redirect_to ingredient_url(@ingredient.id), :notice => "Ingredient updated successfully."
     else
@@ -50,5 +40,10 @@ class IngredientsController < ApplicationController
     @ingredient.destroy
 
     redirect_to ingredients_url, :notice => "Ingredient deleted."
+  end
+
+
+  def ingredient_params
+    params.require(:ingredient).permit(:name, :category, :price_per_unit, :unit)
   end
 end

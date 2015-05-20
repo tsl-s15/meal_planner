@@ -91,12 +91,12 @@ RecipeIngredient.create(recipe_id: quesadillas.id,
                         amount: 12)
 puts "#{RecipeIngredient.count} recipe_ingredients in the database"
 
-Meal.destroy_all
-Meal.create(user_id: user1.id,
-            recipe_id: tacos.id)
-Meal.create(user_id: user2.id,
-            recipe_id: tacos.id)
-Meal.create(user_id: user2.id,
-            recipe_id: quesadillas.id)
-puts "#{Meal.count} meals in the database"
+SelectedRecipe.destroy_all
+SelectedRecipe.create(user_id: user1.id,
+                      recipe_id: tacos.id)
+SelectedRecipe.create(user_id: user2.id,
+                      recipe_id: tacos.id)
+SelectedRecipe.create(user_id: user2.id,
+                      recipe_id: quesadillas.id)
+puts "#{SelectedRecipe.count} selected recipes in the database"
 
