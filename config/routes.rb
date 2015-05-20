@@ -1,4 +1,23 @@
 Rails.application.routes.draw do
+  devise_for :users
+  # Routes for the Recipe resource:
+  # CREATE
+  get '/recipes/new',      :controller => 'recipes', :action => 'new',    :as => 'new_recipe'
+  post '/recipes',         :controller => 'recipes', :action => 'create', :as => 'recipes'
+
+  # READ
+  get '/recipes',          :controller => 'recipes', :action => 'index'
+  get '/recipes/:id',      :controller => 'recipes', :action => 'show',   :as => 'recipe'
+
+  # UPDATE
+  get '/recipes/:id/edit', :controller => 'recipes', :action => 'edit',   :as => 'edit_recipe'
+  patch '/recipes/:id',    :controller => 'recipes', :action => 'update'
+
+  # DELETE
+  delete '/recipes/:id',   :controller => 'recipes', :action => 'destroy'
+  #------------------------------
+
+  root to: "recipes#index"
   # Routes for the Meal resource:
   # CREATE
   get '/meals/new',      :controller => 'meals', :action => 'new',    :as => 'new_meal'

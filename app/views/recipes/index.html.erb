@@ -1,7 +1,7 @@
 <div class="page-header">
   <h1>
-    Names
-    <%= link_to new_name_url, :class => "btn btn-lg btn-success" do %>
+    Recipes
+    <%= link_to new_recipe_url, :class => "btn btn-lg btn-success" do %>
       <i class="fa fa-plus"></i>
     <% end  %>
   </h1>
@@ -11,48 +11,51 @@
 
 <div class="row">
   <div class="col-xs-12">
-    <input type="text" id="quicksearch" placeholder="Search Names (start typing)" class="form-control">
+    <input type="text" id="quicksearch" placeholder="Search Recipes (start typing)" class="form-control">
   </div>
 </div>
 
 <hr>
 
 <div class="row isotope-container">
-<% @names.each do |name| %>
+<% @recipes.each do |recipe| %>
   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Name #<%= name.id %></h3>
+        <h3 class="panel-title">Recipe #<%= recipe.id %></h3>
       </div>
       <div class="panel-body">
         <dl>
+          <dt>Name</dt>
+          <dd><%= recipe.name %></dd>
+
           <dt>Cuisine</dt>
-          <dd><%= name.cuisine %></dd>
+          <dd><%= recipe.cuisine %></dd>
 
           <dt>Servings</dt>
-          <dd><%= name.servings %></dd>
+          <dd><%= recipe.servings %></dd>
 
           <dt>Prep time</dt>
-          <dd><%= name.prep_time %></dd>
+          <dd><%= recipe.prep_time %></dd>
 
           <dt>Instructions</dt>
-          <dd><%= name.instructions %></dd>
+          <dd><%= recipe.instructions %></dd>
 
           <dt>Meal category</dt>
-          <dd><%= name.meal_category %></dd>
+          <dd><%= recipe.meal_category %></dd>
 
           <dt>Creator</dt>
-          <dd><%= name.creator_id %></dd>
+          <dd><%= recipe.creator_id %></dd>
 
         </dl>
         <div class="btn-group btn-group-justified">
-          <%= link_to name_url(name), :class => "btn btn-primary" do %>
+          <%= link_to recipe_url(recipe), :class => "btn btn-primary" do %>
             <i class="fa fa-search-plus"></i>
           <% end %>
-          <%= link_to edit_name_url(name), :class => "btn btn-warning" do %>
+          <%= link_to edit_recipe_url(recipe), :class => "btn btn-warning" do %>
             <i class="fa fa-edit"></i>
           <% end %>
-          <%= link_to name_url(name), :method => "delete", :data => { :confirm => "Do you really want to delete this name?" }, :class => "btn btn-danger" do %>
+          <%= link_to recipe_url(recipe), :method => "delete", :data => { :confirm => "Do you really want to delete this recipe?" }, :class => "btn btn-danger" do %>
             <i class="fa fa-trash-o"></i>
           <% end %>
         </div>

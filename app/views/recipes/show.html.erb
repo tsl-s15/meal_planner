@@ -4,39 +4,42 @@
   <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Name #<%= @name.id %></h3>
+        <h3 class="panel-title">Recipe #<%= @recipe.id %></h3>
       </div>
       <div class="panel-body">
         <div class="row">
           <div class="col-md-12">
             <dl class="dl-horizontal">
+              <dt>Name</dt>
+              <dd><%= @recipe.name %></dd>
+
               <dt>Cuisine</dt>
-              <dd><%= @name.cuisine %></dd>
+              <dd><%= @recipe.cuisine %></dd>
 
               <dt>Servings</dt>
-              <dd><%= @name.servings %></dd>
+              <dd><%= @recipe.servings %></dd>
 
               <dt>Prep time</dt>
-              <dd><%= @name.prep_time %></dd>
+              <dd><%= @recipe.prep_time %></dd>
 
               <dt>Instructions</dt>
-              <dd><%= @name.instructions %></dd>
+              <dd><%= @recipe.instructions %></dd>
 
               <dt>Meal category</dt>
-              <dd><%= @name.meal_category %></dd>
+              <dd><%= @recipe.meal_category %></dd>
 
               <dt>Creator</dt>
-              <dd><%= @name.creator_id %></dd>
+              <dd><%= @recipe.creator_id %></dd>
 
             </dl>
             <div class="btn-group btn-group-justified">
-              <%= link_to names_url, :class => "btn btn-primary" do %>
+              <%= link_to recipes_url, :class => "btn btn-primary" do %>
                 <i class="fa fa-chevron-left"></i>
               <% end %>
-              <%= link_to edit_name_url(@name.id), :class => "btn btn-warning" do %>
+              <%= link_to edit_recipe_url(@recipe.id), :class => "btn btn-warning" do %>
                 <i class="fa fa-edit"></i>
               <% end %>
-              <%= link_to name_url(@name.id), :method => "delete", :data => { :confirm => "Do you really want to delete this name?" }, :class => "btn btn-danger" do %>
+              <%= link_to recipe_url(@recipe.id), :method => "delete", :data => { :confirm => "Do you really want to delete this recipe?" }, :class => "btn btn-danger" do %>
                 <i class="fa fa-trash-o"></i>
               <% end %>
             </div>

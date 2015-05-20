@@ -1,6 +1,7 @@
-class CreateNames < ActiveRecord::Migration
+class CreateRecipes < ActiveRecord::Migration
   def change
-    create_table :names do |t|
+    create_table :recipes do |t|
+      t.string :name
       t.string :cuisine
       t.integer :servings
       t.integer :prep_time
