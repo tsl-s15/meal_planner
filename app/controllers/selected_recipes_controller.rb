@@ -12,9 +12,7 @@ class SelectedRecipesController < ApplicationController
   end
 
   def create
-    @selected_recipe = SelectedRecipe.new
-    @selected_recipe.user_id = params[:user_id]
-    @selected_recipe.recipe_id = params[:recipe_id]
+    @selected_recipe = SelectedRecipe.new(selected_recipe_params)
 
     if @selected_recipe.save
       redirect_to selected_recipes_url, :notice => "Selected recipe created successfully."
@@ -29,9 +27,7 @@ class SelectedRecipesController < ApplicationController
 
   def update
     @selected_recipe = SelectedRecipe.find(params[:id])
-
-    @selected_recipe.user_id = params[:user_id]
-    @selected_recipe.recipe_id = params[:recipe_id]
+    @selected_recipe.update_attributes(selected_recipe_params )
 
     if @selected_recipe.save
       redirect_to selected_recipe_url(@selected_recipe.id), :notice => "Selected recipe updated successfully."
@@ -46,5 +42,9 @@ class SelectedRecipesController < ApplicationController
     @selected_recipe.destroy
 
     redirect_to selected_recipes_url, :notice => "Selected recipe deleted."
+  end
+
+  def selected_recipe_params
+    params.require(:selected_recipe).permit(:user_id, :recipe_id)
   end
 end
