@@ -1,4 +1,7 @@
 class Recipe < ActiveRecord::Base
+  validates :name, :cuisine, :servings, :prep_time, :instructions, :meal_category, :creator_id, presence: true
+  validates :servings, :prep_time, :creator_id, numericality: { only_integer: true }
+
   # has many recipe_ingredients
   def recipe_ingredients
     RecipeIngredient.where(recipe_id: self.id)
