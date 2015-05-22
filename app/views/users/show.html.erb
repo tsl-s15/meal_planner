@@ -35,6 +35,12 @@
         </div>
       </div>
     </div>
+    <h2>Selected recipes</h2>
+    <div class="list-group">
+      <% @user.selected_recipes.each do |selected_recipe| %>
+         <%= link_to selected_recipe.recipe.name, selected_recipe.recipe, class: 'list-group-item' %>
+      <% end %>
+    </div>
   </div>
 </div>
 

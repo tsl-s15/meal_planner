@@ -4,9 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # has many meals
-  def meals
-    Meal.where(user_id: self.id)
+  # has many selected_recipes
+  def selected_recipes
+    SelectedRecipe.where(user_id: self.id)
   end
 end
 

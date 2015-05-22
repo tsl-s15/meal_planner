@@ -47,6 +47,13 @@
         </div>
       </div>
     </div>
+    <!-- Display a list of this recipe's ingredients -->
+    <h2>Ingredients</h2>
+    <div class="list-group">
+      <% @recipe.recipe_ingredients.each do |ri| %>
+         <%= link_to "#{ri.amount} #{ri.ingredient.unit} #{ri.ingredient.name}", ri, class: 'list-group-item' %>
+      <% end %>
+    </div>
   </div>
 </div>
 
