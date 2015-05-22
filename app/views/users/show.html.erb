@@ -41,6 +41,17 @@
          <%= link_to selected_recipe.recipe.name, selected_recipe.recipe, class: 'list-group-item' %>
       <% end %>
     </div>
+    <!-- Shopping list for selected recipes -->
+    <h2>Shopping list for selected recipes</h2>
+    <ul class="list-group">
+      <% @user.ingredient_list.each do |ingredient_hash| %>
+        <li class="list-group-item">
+          <%= ingredient_hash[:amount] %>
+          <%= ingredient_hash[:unit] %>
+          <%= ingredient_hash[:name] %>
+        </li>
+      <% end %>
+    </ul>
   </div>
 </div>
 
