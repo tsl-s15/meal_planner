@@ -12,14 +12,7 @@ class RecipesController < ApplicationController
   end
 
   def create
-    @recipe = Recipe.new
-    @recipe.name = params[:name]
-    @recipe.cuisine = params[:cuisine]
-    @recipe.servings = params[:servings]
-    @recipe.prep_time = params[:prep_time]
-    @recipe.instructions = params[:instructions]
-    @recipe.meal_category = params[:meal_category]
-    @recipe.creator_id = params[:creator_id]
+    @recipe = Recipe.new(recipe_params)
 
     if @recipe.save
       redirect_to recipes_url, :notice => "Recipe created successfully."
@@ -35,13 +28,7 @@ class RecipesController < ApplicationController
   def update
     @recipe = Recipe.find(params[:id])
 
-    @recipe.name = params[:name]
-    @recipe.cuisine = params[:cuisine]
-    @recipe.servings = params[:servings]
-    @recipe.prep_time = params[:prep_time]
-    @recipe.instructions = params[:instructions]
-    @recipe.meal_category = params[:meal_category]
-    @recipe.creator_id = params[:creator_id]
+    @recipe.update_attributes(recipe_params)
 
     if @recipe.save
       redirect_to recipe_url(@recipe.id), :notice => "Recipe updated successfully."
@@ -56,5 +43,9 @@ class RecipesController < ApplicationController
     @recipe.destroy
 
     redirect_to recipes_url, :notice => "Recipe deleted."
+  end
+
+  def recipe_params
+    params.require(:recipe).permit(:name, :cuisine, :servings, :prep_time, :instructions, :meal_category, :creator_id)
   end
 end

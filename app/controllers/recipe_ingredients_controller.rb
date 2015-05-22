@@ -12,10 +12,7 @@ class RecipeIngredientsController < ApplicationController
   end
 
   def create
-    @recipe_ingredient = RecipeIngredient.new
-    @recipe_ingredient.recipe_id = params[:recipe_id]
-    @recipe_ingredient.ingredient_id = params[:ingredient_id]
-    @recipe_ingredient.amount = params[:amount]
+    @recipe_ingredient = RecipeIngredient.new(recipe_ingredient_params)
 
     if @recipe_ingredient.save
       redirect_to recipe_ingredients_url, :notice => "Recipe ingredient created successfully."
@@ -31,9 +28,7 @@ class RecipeIngredientsController < ApplicationController
   def update
     @recipe_ingredient = RecipeIngredient.find(params[:id])
 
-    @recipe_ingredient.recipe_id = params[:recipe_id]
-    @recipe_ingredient.ingredient_id = params[:ingredient_id]
-    @recipe_ingredient.amount = params[:amount]
+    @recipe_ingredient.update_attributes(recipe_ingredient_params)
 
     if @recipe_ingredient.save
       redirect_to recipe_ingredient_url(@recipe_ingredient.id), :notice => "Recipe ingredient updated successfully."
@@ -48,5 +43,9 @@ class RecipeIngredientsController < ApplicationController
     @recipe_ingredient.destroy
 
     redirect_to recipe_ingredients_url, :notice => "Recipe ingredient deleted."
+  end
+
+  def recipe_ingredient_params
+    params.require(:recipe_ingredient).permit(:recipe_id, :ingredient_id, :amount)
   end
 end
