@@ -1,7 +1,7 @@
 <div class="page-header">
   <h1>
-    Comments
-    <%= link_to icon('plus'), new_comment_path, class: "btn btn-lg btn-success" %>
+    <%= plural_table_name.titleize %>
+    <%%= link_to icon('plus'), new_<%= singular_table_name %>_path, class: "btn btn-lg btn-success" %>
   </h1>
 </div>
 
@@ -9,42 +9,38 @@
 
 <div class="row">
   <div class="col-xs-12">
-    <input type="text" id="quicksearch" placeholder="Search Comments (start typing)" class="form-control">
+    <input type="text" id="quicksearch" placeholder="Search <%= plural_table_name.humanize %> (start typing)" class="form-control">
   </div>
 </div>
 
 <hr>
 
 <div class="row isotope-container">
-<% @comments.each do |comment| %>
+<%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Comment #<%= comment.id %></h3>
+        <h3 class="panel-title"><%= singular_table_name.titleize %> #<%%= <%= singular_table_name %>.id %></h3>
       </div>
       <div class="panel-body">
         <dl>
-          <dt>Body</dt>
-          <dd><%= comment.body %></dd>
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
+          <dt><%= attribute.human_name %></dt>
+          <dd><%%= <%= singular_table_name %>.<%= attribute.name %> %></dd>
 
-          <dt>User</dt>
-          <dd><%= comment.user_id %></dd>
-
-          <dt>Recipe</dt>
-          <dd><%= comment.recipe_id %></dd>
-
+<% end -%>
         </dl>
         <div class="btn-group btn-group-justified">
-          <%= link_to icon('search-plus'), comment, class: "btn btn-primary" %>
+          <%%= link_to icon('search-plus'), <%= singular_table_name %>, class: "btn btn-primary" %>
 
-          <%= link_to icon('edit'), edit_comment_url(comment), class: "btn btn-warning" %>
+          <%%= link_to icon('edit'), edit_<%= singular_table_name %>_url(<%= singular_table_name %>), class: "btn btn-warning" %>
 
-          <%= link_to icon('trash-o'), comment, method: :delete, data: { confirm: "Do you really want to delete this comment?" }, class: "btn btn-danger" %>
+          <%%= link_to icon('trash-o'), <%= singular_table_name %>, method: :delete, data: { confirm: "Do you really want to delete this <%= singular_table_name %>?" }, class: "btn btn-danger" %>
         </div>
       </div>
     </div>
   </div>
-<% end %>
+<%% end %>
 </div>
 
 <!-- JavaScript for Isotope layout and quicksearch -->

@@ -1,19 +1,37 @@
-<p id="notice"><%= notice %></p>
+<!-- Responsive panel example-->
 
-<p>
-  <strong>Body:</strong>
-  <%= @comment.body %>
-</p>
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Comment #<%= @comment.id %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-12">
+            <dl class="dl-horizontal">
+              <dt>Body</dt>
+              <dd><%= @comment.body %></dd>
 
-<p>
-  <strong>User:</strong>
-  <%= @comment.user_id %>
-</p>
+              <dt>User</dt>
+              <dd><%= @comment.user_id %></dd>
 
-<p>
-  <strong>Recipe:</strong>
-  <%= @comment.recipe_id %>
-</p>
+              <dt>Recipe</dt>
+              <dd><%= @comment.recipe_id %></dd>
 
-<%= link_to 'Edit', edit_comment_path(@comment) %> |
-<%= link_to 'Back', comments_path %>
+            </dl>
+            <div class="btn-group btn-group-justified">
+              <%= link_to icon('chevron-left'), comments_path, class: "btn btn-primary" %>
+
+              <%= link_to icon('edit'), edit_comment_path(@comment), class: "btn btn-warning" %>
+
+              <%= link_to icon('trash-o'), @comment, method: :delete, data: { confirm: "Do you really want to delete this comment?" }, class: "btn btn-danger" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End responsive panel example -->
