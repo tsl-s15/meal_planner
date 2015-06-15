@@ -4,6 +4,12 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 
 gem 'devise'
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+  gem 'capybara'
+end
+
 # gem 'starter_generators', git: 'git://github.com/rbetina/starter_generators', branch: 'panels'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
